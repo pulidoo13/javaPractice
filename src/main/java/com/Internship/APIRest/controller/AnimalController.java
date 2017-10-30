@@ -1,12 +1,16 @@
 package com.Internship.APIRest.controller;
 
+import com.Internship.APIRest.exception.PreconditionFailedException;
 import com.Internship.APIRest.resource.AnimalResource;
 import com.Internship.APIRest.service.AnimalService;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 @RestController
 @RequestMapping("/animals")
@@ -57,4 +61,11 @@ public class AnimalController {
 
         return;
     }
+
+    @ExceptionHandler({PreconditionFailedException.class})
+    @ResponseStatus(HttpStatus.PRECONDITION_FAILED)
+    public  void preException(){
+    LOG.info("Precondition FAILED");
+    }
+
 }
