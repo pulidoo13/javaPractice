@@ -1,12 +1,10 @@
 package com.Internship.APIRest.resource;
 
 
-import org.springframework.data.annotation.Id;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Table;
+
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Animals")
@@ -18,6 +16,10 @@ public class AnimalResource {
     private String name;
     private String specie;
     private String country;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER, orphanRemoval = true)
+    private Zoo zoo;
+
 
     public long getId() {
         return id;
@@ -49,5 +51,13 @@ public class AnimalResource {
 
     public void setCountry(String pCountry) {
         country = pCountry;
+    }
+
+    public Zoo getZoo() {
+        return zoo;
+    }
+
+    public void setZoo(Zoo zoo) {
+        this.zoo = zoo;
     }
 }

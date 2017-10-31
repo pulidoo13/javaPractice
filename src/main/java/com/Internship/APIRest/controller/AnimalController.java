@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/animals")
 public class AnimalController {
@@ -19,6 +21,11 @@ public class AnimalController {
     private static final Logger LOG = LoggerFactory.getLogger(AnimalController.class);
     @Autowired
     private AnimalService animalService;
+    @GetMapping("/")
+    public List<AnimalResource> getAnimals() {
+        return animalService.getAnimals();
+    }
+
     @GetMapping("/{id}")
     public AnimalResource getAnimals(@PathVariable(name = "id")long pId) {
         AnimalResource animals = new AnimalResource();

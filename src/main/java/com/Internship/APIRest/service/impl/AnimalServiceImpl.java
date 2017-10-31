@@ -16,7 +16,7 @@ public class AnimalServiceImpl implements AnimalService {
 
 
     private AnimalsRepository animalsRepository;
-    
+
     @Override
     public List<AnimalResource> getAnimals() {
         List<AnimalResource> animalResources = new ArrayList<>();
